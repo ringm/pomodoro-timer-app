@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Roboto+Slab:wght@700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/progress.css">
+  <script src="js/anime.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <title id="tab-title">Pomodoro App</title>
+</head>
+<body>
+   <div class="bg-port-gore w-screen h-screen flex flex-col content-center justify-center items-center overflow-hidden">
+    <div class="flex flex-col items-center">
+      <h1 class="font-sans text-periwinkle text-2xl mb-6 md:mb-12" style="letter-spacing: 3px;">pomodoro</h1>
+      <div id="menu-container" class="z-20 container text-sm md:text-base px-2 py-2 md:px-4 flex items-center justify-around bg-mirage rounded-full text-periwinkle mb-8 sm:mb-16">
+        <div id="pill" class="absolute rounded-full"></div>
+        <input class="hidden timer-radio" id="pomo" type="radio" name="timer-type" value="pomodoro" checked><label class="relative z-10 cursor-pointer timer-label" for="pomo">pomodoro</label>
+        <input class="hidden timer-radio" id="short" type="radio" name="timer-type" value="short break"><label class="relative z-10 mx-2 md:mx-8 cursor-pointer timer-label text-center" for="short">short break</label>
+        <input class="hidden timer-radio" id="long" type="radio" name="timer-type" value="long break"><label class="relative z-10 cursor-pointer timer-label text-center" for="long">long break</label>
+      </div>
+      <div id="circle-container" class="relative flex flex-col items-center justify-center mb-8 sm:mb-16">
+        <img class="circle" src="img/circle.svg" alt="">
+        <svg class="absolute z-10" width="300" height="300" viewBox="0 0 249 249" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="progress-stroke" class="progress" d="M244.5 124.5C244.5 190.774 190.774 244.5 124.5 244.5C58.2258 244.5 4.5 190.774 4.5 124.5C4.5 58.2258 58.2258 4.5 124.5 4.5C190.774 4.5 244.5 58.2258 244.5 124.5Z" stroke="#F87070" stroke-width="9" stroke-linecap="round"/>
+        </svg>
+        <div class="flex flex-col items-center absolute z-10">
+          <p class="total-work text-xs text-periwinkle uppercase tracking-widest">Total Work Time</p>
+          <p id="total-work" class="total-work text-xs text-periwinkle uppercase tracking-widest">00:00</p>
+          <p id="time-output" class="text-periwinkle text-6xl"></p>
+          <button id="control" class="control text-periwinkle uppercase tracking-widest focus:outline-none" style="letter-spacing: 12px">start</button>
+          <button id="restart" class="control opacity-0 text-xs text-periwinkle uppercase tracking-widest focus:outline-none" style="letter-spacing: 12px">end session</button>
+        </div>
+      </div>
+      <a id="settings" class="cursor-pointer">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="settings-icon-group" opacity="0.5">
+          <path id="settings-icon" fill-rule="evenodd" clip-rule="evenodd" d="M24.0378 15.365L26.9654 17.682C27.229 17.899 27.3054 18.2771 27.1318 18.578L24.3568 23.429C24.1834 23.73 23.8226 23.849 23.5104 23.73L20.0555 22.323C19.341 22.883 18.557 23.345 17.7107 23.702L17.1903 27.412C17.1349 27.741 16.8504 28 16.5035 28H10.9535C10.6066 28 10.3221 27.741 10.2667 27.412L9.74634 23.702C8.89998 23.345 8.11606 22.8761 7.40147 22.323L3.94656 23.73C3.63437 23.856 3.27366 23.73 3.1002 23.429L0.325147 18.578C0.151686 18.27 0.228043 17.892 0.491649 17.682L3.41928 15.365C3.3638 14.917 3.32218 14.462 3.32218 14C3.32218 13.538 3.3638 13.083 3.41928 12.635L0.491649 10.318C0.228043 10.101 0.151686 9.72302 0.325147 9.42199L3.10026 4.57099C3.27366 4.26996 3.63443 4.15098 3.94662 4.26996L7.40153 5.67697C8.11606 5.11699 8.90005 4.65499 9.74641 4.29799L10.2667 0.588001C10.3222 0.259022 10.6067 0 10.9535 0H16.5036C16.8504 0 17.1349 0.259022 17.1974 0.588001L17.7177 4.29799C18.564 4.65499 19.348 5.12394 20.0626 5.67697L23.5175 4.26996C23.8297 4.14396 24.1904 4.26996 24.3638 4.57099L27.1389 9.42199C27.3123 9.72997 27.236 10.108 26.9724 10.318L24.0378 12.635C24.0933 13.083 24.1349 13.538 24.1349 14C24.1349 14.462 24.0933 14.917 24.0378 15.365ZM8.87221 14C8.87221 16.709 11.0437 18.9 13.7285 18.9C16.4134 18.9 18.5849 16.7091 18.5849 14.0001C18.5849 11.2911 16.4134 9.10004 13.7285 9.10004C11.0437 9.10004 8.87221 11.291 8.87221 14Z" fill="#D7E0FF"/>
+          </g>
+        </svg>   
+      </a> 
+    </div>
+    <div id="settingsContainer" class="bg-mirage bg-opacity-75 absolute z-50 w-screen h-screen flex flex-col items-center justify-center hidden">
+      <div id="settingsBox" class="bg-white py-2 sm:py-8 rounded-xl">
+        <div class="header flex justify-between border-b-2 border-mirage border-opacity-25 pt-2">
+          <h2 class="text-base sm:text-2xl ml-4 mb-2 sm:mb-6">Settings</h2>
+          <button id="closeSettings" aria-label="closeSettings" class="mr-4 mb-2 sm:mb-6 focus:outline-none">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.5">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3639 2.05044L11.9497 0.63623L6.99995 5.58598L2.0502 0.63623L0.635986 2.05044L5.58573 7.00019L0.635986 11.9499L2.0502 13.3642L6.99995 8.4144L11.9497 13.3642L13.3639 11.9499L8.41416 7.00019L13.3639 2.05044Z" fill="#1E213F"/>
+            </g>
+            </svg>
+          </button>
+        </div>
+        <form class="mx-4 flex flex-col items-center" action="index.html" method="post" onsubmit="return false;">
+          <fieldset class="mt-3 sm:mt-6 border-b-2 border-mirage border-opacity-25 pb-4 w-full">
+            <legend class="text-center text-xs sm:text-sm uppercase mb-2 sm:mb-6" style="letter-spacing: 5px;">Time (Minutes)</legend>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm sm:text-base text-port-gore opacity-50" for="pomodoro">pomodoro</label>
+              <input class="bg-periwinkle rounded-md w-24 p-2 time-setting" type="number" id="pomodoro" name="pomodoro" min="1" max="59" value="25" >
+            </div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm sm:text-base text-port-gore opacity-50" for="sBreak">short break</label>
+              <input class="bg-periwinkle rounded-md w-24 p-2 time-setting" type="number" id="sBreak" name="sBreak" min="1" max="59" value="5" >
+            </div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm sm:text-base text-port-gore opacity-50" for="lBreak">long break</label>
+              <input class="bg-periwinkle rounded-md w-24 p-2 time-setting" type="number" id="lBreak" name="lBreak" min="1" max="59" value="10" >
+            </div>
+          </fieldset>
+          <fieldset class="mt-3 sm:mt-6 flex flex-col items-center border-b-2 border-mirage border-opacity-25 pb-6 w-full">
+            <legend class="text-center text-xs sm:text-sm uppercase mb-2 sm:mb-6" style="letter-spacing: 5px;">font</legend>
+            <label class="hidden">font</label>
+            <div class="flex items-center justify-around">
+              <input class="hidden font-radio" data-font="'Kumbh Sans', sans-serif" id="sans" type="radio" name="font_format" value="sans" checked><label class="bg-periwinkle p-3 rounded-full cursor-pointer" for="sans">Aa</label>
+              <input class="hidden font-radio" data-font="'Roboto Slab', serif" id="serif" type="radio" name="font_format" value="serif"><label class="font-serif mx-4 bg-periwinkle p-3 rounded-full cursor-pointer" for="serif">Aa</label>
+              <input class="hidden font-radio" data-font="'Space', monospace" id="mono" type="radio" name="font_format" value="mono"><label class="font-mono bg-periwinkle p-3 rounded-full cursor-pointer" for="mono">Aa</label>
+            </div>
+          </fieldset>
+          <fieldset class="mt-6 flex flex-col items-center w-full">
+            <legend class="text-center text-xs sm:text-sm uppercase mb-2 sm:mb-6" style="letter-spacing: 5px;">color</legend>
+            <label class="hidden">color</label>
+            <div class="flex justify-around">
+              <input id="red" data-color="#F87070" class="hidden color-radio" type="radio" name="color_format" value="red" checked>
+              <label class="cursor-pointer" for="red">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="20" cy="20" r="20" fill="#F87070"/>
+                  <path class="hidden checked" d="M14 20.5L17.9526 24.4526L26.4053 16" stroke="#161932" stroke-width="2"/>
+                </svg>
+              </label>
+              <input id="cyan" data-color="#70F3F8" class="hidden color-radio" type="radio" name="color_format" value="cyan">
+              <label class="mx-4 cursor-pointer" for="cyan">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="20" cy="20" r="20" fill="#70F3F8"/>
+                  <path class="hidden checked" d="M14 20.5L17.9526 24.4526L26.4053 16" stroke="#161932" stroke-width="2"/>
+                </svg>
+              </label>
+              <input id="purple" data-color="#D881F8" class="hidden color-radio" type="radio" name="color_format" value="purple">
+              <label class="cursor-pointer" for="purple">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="20" cy="20" r="20" fill="#D881F8"/>
+                  <path class="hidden checked" d="M14 20.5L17.9526 24.4526L26.4053 16" stroke="#161932" stroke-width="2"/>
+                </svg>
+              </label>
+            </div>
+          </fieldset>
+          <button id="apply" class="bg-froly px-10 py-4 rounded-full text-white transform translate-y-6 sm:translate-y-12 focus:outline-none" type="submit" name="button">Apply</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

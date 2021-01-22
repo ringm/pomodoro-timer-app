@@ -1,0 +1,100 @@
+:root {
+  --color: #F87070;
+  --font: Kumbh Sans, sans-serif;
+}
+
+.progress {
+  transform-origin: center;
+  transform: rotate(-90deg);
+  stroke: var(--color);
+}
+
+.control,
+#time-output,
+.timer-radio + label {
+  font-family: var(--font);
+}
+.control:hover {
+  color: var(--color);
+  transition: color .3s;
+}
+
+#settings,
+#settings-icon-group, 
+#settings-icon {
+  transform-origin: center;
+}
+
+#settingsBox {
+  width: min(540px,80%);
+}
+
+#pill {
+  height: 44px;
+  transition: all .2s;
+  left: 0;
+  transform: translateX(290px);
+  background-color: var(--color);
+}
+
+@media (min-width: 768px) {
+  #pill {
+    height: 60px;
+  }
+}
+
+@media(min-width: 390px) {  
+  #menu-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 1rem;
+  }
+  #pill {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+#settings:hover #settings-icon,
+.timer-radio:not(:checked) + label:hover {
+  fill: var(--color);
+}
+
+#settings:hover #settings-icon-group {
+  opacity: 100%;
+  transition: all .4s;
+  transform: rotate(180deg);
+}
+
+.circle {
+  width: 100%;
+  filter: drop-shadow(-40px -40px 40px #272C5A) drop-shadow(40px 40px 40px #121530);
+}
+
+@media (max-width: 375px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
+#circle-container {
+  width: min(90%, 375px);
+}
+
+.font-radio:checked + label {
+  color: white;
+  background-color: #161932;
+}
+
+.timer-radio + label {
+  transition: all .3s;
+  padding: 0 24px;
+}
+
+.timer-radio:checked + label {
+  color: #161932;
+}
+
+.color-radio:checked + label .checked {
+  display: inline;
+}

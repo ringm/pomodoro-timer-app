@@ -1,0 +1,17 @@
+{
+  "name": "pomodoro-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.3.0",
+    "autoprefixer": "^10.2.1",
+    "postcss-cli": "^7.1.2",
+    "tailwindcss": "^1.8.3"
+  }
+}
